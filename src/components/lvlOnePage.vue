@@ -4,7 +4,7 @@
         <betweenPagesComponent/>
 
         <form @submit.prevent="add()">
-            <input autofocus v-model="inputTodo" type="text">
+            <input placeholder="New Todo Item" autofocus v-model="inputTodo" type="text">
         </form>
 
         <div id="List">
@@ -12,16 +12,11 @@
                 <div>
                     {{ todoItem }}
                 </div>
-                <img @click.prevent="toCompleted()" src="../assets/doneArrowGreen.svg">
+                <img style="width: 40px;" @click.prevent="toCompleted(todoItem)" src="../assets/doneArrowGreen.svg">
             </div>
         </div>
-        <div id="List">
-            <div v-for="completedTodo in completedTodos" v-bind:key="completedTodo">
-                <div>
-                    {{ completedTodo }}
-                </div>
-            </div>
-        </div>
+
+        <completedList :test="completedTodos"/>
 
     </div>
 </template>
@@ -30,11 +25,13 @@
 
 <script>
     import betweenPagesComponent from './betweenPagesComponent.vue';
+    import completedList from './completedList.vue';
 
     export default {
 
   components: {
     betweenPagesComponent,
+    completedList,
 
   },
 
@@ -47,8 +44,9 @@
     },
     toCompleted(todoItem) {
         this.completedTodos.push(
-            this.todoItem  
+            todoItem    
         )
+        this.todos = this.todos.filter(item => item !== todoItem)
     },
   },
   data() {
@@ -139,16 +137,5 @@
         color: #FFF;
         font-size: 25px;
     }
-
-    img {
-        width: 40px;
-    }
-
-    img:hover {
-        width: 45px;
-        transition: 100ms;
-    }
-
-    
 
 </style>
