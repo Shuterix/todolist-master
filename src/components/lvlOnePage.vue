@@ -16,7 +16,9 @@
             </div>
         </div>
 
-        <completedList :test="completedTodos"/>
+        <completedList :completedTodoList="completedTodos"
+            @removeCompletedTodo="completedTodos = completedTodos.filter(item => item !== $event)"
+        />
 
     </div>
 </template>
