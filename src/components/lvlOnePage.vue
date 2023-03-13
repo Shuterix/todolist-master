@@ -20,6 +20,14 @@
             @removeCompletedTodo="completedTodos = completedTodos.filter(item => item !== $event)"
         />
 
+        <div id="List">
+            <div>
+                <div>
+                    {{ axiosData[1] }}
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -28,6 +36,7 @@
 <script>
     import betweenPagesComponent from './betweenPagesComponent.vue';
     import completedList from './completedList.vue';
+    import axios from "axios"; 
 
     export default {
 
@@ -56,9 +65,24 @@
         inputTodo: '',
         todos: [],
         completedTodos: [],
+        axiosData: [],
     }
   },
-}
+  name: "App",
+    async mounted() {
+    // The get method called by the function
+        await axios
+        .get("https://jsonplaceholder.typicode.com/posts")
+            .then((response) => {
+                console.log(response);
+                // using stringify to beautify the output
+                this.axiosData = response.data;
+            })
+            .catch((errors) => {
+                console.log(errors); // Errors
+            });
+    },
+};
 </script>
 
 
