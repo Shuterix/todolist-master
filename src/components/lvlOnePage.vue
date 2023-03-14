@@ -22,8 +22,8 @@
 
         <div id="List">
             <div>
-                <div>
-                    {{ axiosData[1] }}
+                <div v-if="postsFetch.length">
+                    {{postsFetch[0]}}
                 </div>
             </div>
         </div>
@@ -65,22 +65,19 @@
         inputTodo: '',
         todos: [],
         completedTodos: [],
-        axiosData: [],
+        postsFetch: [],
     }
   },
   name: "App",
     async mounted() {
-    // The get method called by the function
-        await axios
-        .get("https://jsonplaceholder.typicode.com/posts")
-            .then((response) => {
-                console.log(response);
-                // using stringify to beautify the output
-                this.axiosData = response.data;
-            })
-            .catch((errors) => {
-                console.log(errors); // Errors
-            });
+        try {
+            const fetchedPosts = await axios.get("https://jsonplaceholder.typicode.com/posts") 
+            this.postsFetch = fetchedPosts.data
+            console.log(fetchedPosts)
+            console.log(axiosData)
+        } catch (e) {
+            console.log(e)
+        }
     },
 };
 </script>
