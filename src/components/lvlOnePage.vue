@@ -5,6 +5,7 @@
 
         <form @submit.prevent="add()">
             <input placeholder="New Todo Item" autofocus v-model="inputTodo" type="text">
+            {{ inputTodo }}
         </form>
 
         <div id="List">
