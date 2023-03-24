@@ -4,24 +4,14 @@
             <div>
                 {{ completedTodo }}
             </div>
-            <img style="width: 25px;" @click.prevent="$emit('removeCompletedTodo', completedTodo)" src="../assets/remove.svg">
+            <img style="width: 25px;" @click.prevent="$emit('removeTodo', completedTodo)" src="../assets/remove.svg">
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        methods: {
-
-        },
-
-
-        data() {
-            return {
-                
-            }
-        },
-
+        name: "CompletedList",
 
         props: [
             'completedTodoList'

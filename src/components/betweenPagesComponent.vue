@@ -11,10 +11,3 @@
         name: 'betweenPagesComponent',
     }
 </script>
-
-
-<style>
-    template > div {
-        margin-top: 2rem;
-    }
-</style>

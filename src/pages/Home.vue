@@ -3,9 +3,3 @@
         TodoList
     </router-link>
 </template>
-
-
-
-<style>
-
-</style>

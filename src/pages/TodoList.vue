@@ -3,28 +3,23 @@
 
         <betweenPagesComponent/>
 
-        <form @submit.prevent="add()">
-            <input placeholder="New Todo Item" autofocus v-model="inputTodo" type="text">
-            {{ inputTodo }}
-        </form>
+      <form @submit.prevent="addTodo(inputTodo)">
+        <input placeholder="New Todo Item" autofocus v-model="inputTodo" type="text">
+      </form>
 
-        <div id="List">
-            <div v-for="todoItem in todos" v-bind:key="todoItem" class="todoItem">
-                <div>
-                    {{ todoItem }}
-                </div>
-                <img style="width: 40px;" @click.prevent="toCompleted(todoItem)" src="../assets/doneArrowGreen.svg">
-            </div>
-        </div>
+        <TodoList :todoList="todos"
+            @toCompleted="this.completedTodos.push($event),
+                          todos = todos.filter(item => item !== $event)"
+        />
 
-        <completedList :completedTodoList="completedTodos"
-            @removeCompletedTodo="completedTodos = completedTodos.filter(item => item !== $event)"
+        <CompletedList :completedTodoList="completedTodos"
+            @removeTodo="completedTodos = completedTodos.filter(item => item !== $event)"
         />
 
         <div id="List">
             <div>
                 <div v-if="postsFetch.length">
-                    {{postsFetch[0]}}
+                    {{postsFetch[0].title}}
                 </div>
             </div>
         </div>
@@ -35,25 +30,27 @@
 
 
 <script>
-    import betweenPagesComponent from './betweenPagesComponent.vue';
-    import completedList from './completedList.vue';
+    import betweenPagesComponent from '../components/betweenPagesComponent.vue';
+    import CompletedList from '../components/CompletedList.vue';
+    import TodoList from "@/components/TodoList.vue";
     import axios from "axios"; 
 
     export default {
 
   components: {
     betweenPagesComponent,
-    completedList,
-
+    CompletedList,
+    TodoList,
   },
 
   methods: {
-    add() {
-        this.todos.push(
-            this.inputTodo
-        )
-        this.inputTodo = ''
+    addTodo(inputTodo) {
+      this.todos.push(
+          inputTodo
+      )
+      this.inputTodo = ''
     },
+
     toCompleted(todoItem) {
         this.completedTodos.push(
             todoItem    
@@ -63,10 +60,10 @@
   },
   data() {
     return {
-        inputTodo: '',
         todos: [],
         completedTodos: [],
         postsFetch: [],
+        inputTodo: '',
     }
   },
   name: "App",
@@ -75,7 +72,7 @@
             const fetchedPosts = await axios.get("https://jsonplaceholder.typicode.com/posts") 
             this.postsFetch = fetchedPosts.data
             console.log(fetchedPosts)
-            console.log(axiosData)
+            console.log(fetchedPosts)
         } catch (e) {
             console.log(e)
         }
