@@ -1,11 +1,10 @@
 <template>
     <div class="wrapper">
 
-        <betweenPagesComponent/>
-
-      <form @submit.prevent="addTodo(inputTodo)">
-        <input placeholder="New Todo Item" autofocus v-model="inputTodo" type="text">
-      </form>
+        <TodoForm :inputTodo="inputTodo"
+            @addTodo="this.todos.push($event),
+                      $event = ''"
+        />
 
         <TodoList :todoList="todos"
             @toCompleted="this.completedTodos.push($event),
@@ -16,13 +15,7 @@
             @removeTodo="completedTodos = completedTodos.filter(item => item !== $event)"
         />
 
-        <div id="List">
-            <div>
-                <div v-if="postsFetch.length">
-                    {{postsFetch[0].title}}
-                </div>
-            </div>
-        </div>
+        <ApiList/>
 
     </div>
 </template>
@@ -30,54 +23,36 @@
 
 
 <script>
-    import betweenPagesComponent from '../components/betweenPagesComponent.vue';
     import CompletedList from '../components/CompletedList.vue';
     import TodoList from "@/components/TodoList.vue";
-    import axios from "axios"; 
+    import TodoForm from "@/components/TodoForm.vue";
+    import ApiList from "@/components/ApiList.vue";
+
 
     export default {
 
   components: {
-    betweenPagesComponent,
     CompletedList,
     TodoList,
+    TodoForm,
+    ApiList,
   },
 
-  methods: {
-    addTodo(inputTodo) {
-      this.todos.push(
-          inputTodo
-      )
-      this.inputTodo = ''
-    },
+  props: [
+    'inputTodo'
+  ],
 
-    toCompleted(todoItem) {
-        this.completedTodos.push(
-            todoItem    
-        )
-        this.todos = this.todos.filter(item => item !== todoItem)
-    },
+  methods: {
+
   },
   data() {
     return {
         todos: [],
         completedTodos: [],
-        postsFetch: [],
-        inputTodo: '',
     }
   },
   name: "App",
-    async mounted() {
-        try {
-            const fetchedPosts = await axios.get("https://jsonplaceholder.typicode.com/posts") 
-            this.postsFetch = fetchedPosts.data
-            console.log(fetchedPosts)
-            console.log(fetchedPosts)
-        } catch (e) {
-            console.log(e)
-        }
-    },
-};
+    };
 </script>
 
 

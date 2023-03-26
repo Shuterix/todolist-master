@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../pages/Home.vue'
 import TodoList from '../pages/TodoList.vue'
 
 const router = createRouter({
@@ -7,11 +6,6 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'The Landing Page. (Home Screen)',
-      component: Home,
-    },
-    {
-      path: '/todoList',
       name: 'First Level of Vue part in appkademia.',
       component: TodoList,
     },
