@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="$emit('addTodo', inputTodo), resetForm()">
-    <input placeholder="New Todo Item" autofocus v-model="inputTodo" type="text">
+    <input placeholder="New Todo Item" v-model="inputTodo" type="text">
   </form>
 </template>
 

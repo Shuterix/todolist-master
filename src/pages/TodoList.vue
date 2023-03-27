@@ -6,6 +6,20 @@
                       $event = ''"
         />
 
+        <div class="test">
+          <input autofocus type="text" v-model="nameInput">
+          <button @click="this.name.push(
+            this.nameInput
+        ),
+         this.nameInput = ''">
+            Click
+          </button>
+        </div>
+
+      <h1  class="test">
+        {{ name }}
+      </h1>
+
         <TodoList :todoList="todos"
             @toCompleted="this.completedTodos.push($event),
                           todos = todos.filter(item => item !== $event)"
@@ -49,11 +63,33 @@
     return {
         todos: [],
         completedTodos: [],
+        name: [],
+        nameInput: '',
     }
   },
+
+  mounted() {
+    if (localStorage.nameInput) {
+      this.nameInput = localStorage.nameInput;
+    }
+  },
+  watch: {
+    name(newNameInput) {
+      localStorage.nameInput = newNameInput;
+    }
+  },
+
   name: "App",
     };
 </script>
+
+<style scoped>
+  .test {
+    display: flex;
+    justify-content: center;
+    font-size: 24px !important;
+  }
+</style>
 
 
 
