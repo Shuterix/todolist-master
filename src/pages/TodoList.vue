@@ -48,9 +48,6 @@
     if (localStorage.todos) {
       this.todos = JSON.parse(localStorage.todos)
     }
-    if (localStorage.completedTodos) {
-      this.completedTodos = JSON.parse(localStorage.completedTodos)
-    }
   },
   watch: {
 
@@ -60,14 +57,6 @@
       },
       deep: true
     },
-
-    completedTodos: {
-      handler(newCompletedTodos) {
-        localStorage.completedTodos = JSON.stringify(newCompletedTodos)
-      },
-      deep: true
-    }
-
   },
 
   name: "App",

@@ -16,6 +16,21 @@ export default {
     }
   },
 
+  mounted() {
+    if (localStorage.completedTodos) {
+      this.completedTodos = JSON.parse(localStorage.completedTodos)
+    }
+  },
+
+  watch: {
+    completedTodos: {
+      handler(newCompletedTodos) {
+        localStorage.completedTodos = JSON.stringify(newCompletedTodos)
+      },
+      deep: true
+    }
+  },
+
   components: {
     CompletedList,
   },
