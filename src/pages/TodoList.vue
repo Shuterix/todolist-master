@@ -17,10 +17,8 @@
 
 
 <script>
-    import CompletedList from '../components/CompletedTodos.vue';
     import TodoList from "@/components/TodoList.vue";
     import TodoForm from "@/components/TodoForm.vue";
-    import ApiList from "@/components/ApiList.vue";
     import Navigation from "@/components/Navigation.vue";
 
 
@@ -30,7 +28,6 @@
     Navigation,
     TodoList,
     TodoForm,
-    ApiList,
   },
 
   props: [
