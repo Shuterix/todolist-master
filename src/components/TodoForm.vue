@@ -1,6 +1,6 @@
 <template>
-  <form @submit.prevent="$emit('addTodo', inputTodo), resetForm()">
-    <input placeholder="New Todo Item" v-model="inputTodo" type="text">
+  <form class="p-4" @submit.prevent="$emit('addTodo', inputTodo), resetForm()">
+    <input class="rounded-full p-3 align-middle w-full" placeholder="New Todo Item" v-model="inputTodo" type="text">
   </form>
 </template>
 

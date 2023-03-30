@@ -1,6 +1,6 @@
 <template>
     <div id="List">
-        <div class="todoItem" v-for="completedTodo in completedTodoList" v-bind:key="completedTodo">
+        <div class="shadow" v-for="completedTodo in completedTodoList" v-bind:key="completedTodo">
             <div>
                 {{ completedTodo }}
             </div>
