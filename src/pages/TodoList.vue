@@ -17,7 +17,7 @@
 
 
 <script>
-    import TodoList from "@/components/TodoList.vue";
+    import TodoList from "@/components/Todos.vue";
     import TodoForm from "@/components/TodoForm.vue";
     import Navigation from "@/components/Navigation.vue";
 

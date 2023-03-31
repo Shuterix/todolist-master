@@ -1,13 +1,13 @@
 <template>
   <div>
-    <CompletedList :completedTodoList="completedTodos"
+    <CompletedTodos :completedTodoList="completedTodos"
                    @removeTodo="completedTodos = completedTodos.filter(item => item !== $event)"
     />
   </div>
 </template>
 
 <script>
-import CompletedList from "@/components/CompletedTodos.vue";
+import CompletedTodos from "@/components/CompletedTodos.vue";
 export default {
 
   data() {
@@ -32,7 +32,7 @@ export default {
   },
 
   components: {
-    CompletedList,
+    CompletedTodos,
   },
   name: "CompletedList"
 }

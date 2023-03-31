@@ -8,7 +8,7 @@ const router = createRouter({
   routes: [
     {
       path: '/TodoList',
-      name: 'List of thing todo.',
+      name: 'Home',
       component: TodoList,
     },
     {
