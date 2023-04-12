@@ -4,7 +4,7 @@
       <div>
         {{ todoItem }}
       </div>
-      <img style="width: 40px;" @click.prevent="$emit('toCompleted', todoItem)" src="../assets/doneArrowGreen.svg">
+      <img style="width: 40px;" @click="$emit('toCompleted', todoItem)" src="../assets/doneArrowGreen.svg">
     </div>
   </div>
 </template>
@@ -18,7 +18,3 @@ export default {
   ],
 }
 </script>
-
-<style scoped>
-
-</style>
