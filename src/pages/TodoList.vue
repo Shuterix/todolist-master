@@ -45,6 +45,7 @@
 
       localStorage.setItem('todos', JSON.stringify(newTodos))
       localStorage.setItem('completedTodos', JSON.stringify(newCompletedTodos))
+      this.todos = JSON.parse(localStorage.todos)
     },
   },
 
