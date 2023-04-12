@@ -7,10 +7,7 @@
         />
 
         <TodoList :todoList="todos"
-            @toCompleted="console.log($event),
-                          localStorage.getItem('completedTodos'),
-                          localStorage.setItem('completedTodos', $event),
-                          todos = todos.filter(item => item !== $event)"
+            @toCompleted="test($event)"
         />
 
     </div>
@@ -37,13 +34,23 @@
   ],
 
   methods: {
+    test($event) {
+      console.log($event)
 
+      let newCompletedTodos = JSON.parse(localStorage.getItem('completedTodos')) || []
+      let newTodos = JSON.parse(localStorage.getItem('todos')) || []
+
+      newTodos = newTodos.filter(item => item !== $event)
+      newCompletedTodos.push($event)
+
+      localStorage.setItem('todos', JSON.stringify(newTodos))
+      localStorage.setItem('completedTodos', JSON.stringify(newCompletedTodos))
+    },
   },
 
   data() {
     return {
       todos: [],
-      test: '',
     }
   },
 
