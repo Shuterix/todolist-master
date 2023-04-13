@@ -2,12 +2,11 @@
     <div class=" container mx-auto">
 
         <TodoForm :inputTodo="inputTodo"
-            @addTodo="this.todos.push($event),
-                      $event = ''"
+            @addTodo="addTodo($event)"
         />
 
         <TodoList :todoList="todos"
-            @toCompleted="test($event)"
+            @toCompleted="moveToCompleted($event)"
         />
 
     </div>
@@ -34,7 +33,7 @@
   ],
 
   methods: {
-    test($event) {
+    moveToCompleted($event) {
       console.log($event)
 
       let newCompletedTodos = JSON.parse(localStorage.getItem('completedTodos')) || []
@@ -47,6 +46,10 @@
       localStorage.setItem('completedTodos', JSON.stringify(newCompletedTodos))
       this.todos = JSON.parse(localStorage.todos)
     },
+    addTodo($event) {
+      this.todos.push($event)
+          $event = ''
+    }
   },
 
   data() {

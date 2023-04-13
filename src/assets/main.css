@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: rgb(96 165 250);
+  background-color: #7B8FA1;
   height: 100vh;
 }
 
@@ -8,7 +8,8 @@ body {
   box-sizing: border-box;
 }
 
-input {
-  padding: 8px;
+.item {
+  font-size: 20px;
+  font-weight: bold;
 }
 

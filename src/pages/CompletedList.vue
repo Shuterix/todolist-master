@@ -1,7 +1,7 @@
 <template>
   <div>
     <CompletedTodos :completedTodoList="completedTodos"
-                    @removeTodo="completedTodos = completedTodos.filter(item => item !== $event)"
+                    @removeTodo="removeTodo($event)"
     />
   </div>
 </template>
@@ -17,7 +17,9 @@ export default {
   },
 
   methods: {
-    
+    removeTodo($event) {
+      this.completedTodos = this.completedTodos.filter(item => item !== $event)
+    }
   },
 
   mounted() {
